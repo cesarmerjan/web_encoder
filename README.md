@@ -32,3 +32,18 @@ encoded_session = redis.get(session_id)
 session = json.loads(web_encoder.decode(encoded_session))
 
 ```
+## Test Coverage
+```
+Name                                         Stmts   Miss  Cover
+----------------------------------------------------------------
+src/__init__.py                                  0      0   100%
+src/web_encoder/__init__.py                      2      0   100%
+src/web_encoder/exceptions.py                   28      0   100%
+src/web_encoder/main.py                         68      0   100%
+tests/__init__.py                                0      0   100%
+tests/unit/__init__.py                           0      0   100%
+tests/unit/web_encoder/__init__.py               0      0   100%
+tests/unit/web_encoder/test_web_encoder.py     221      0   100%
+----------------------------------------------------------------
+TOTAL                                          319      0   100%
+```

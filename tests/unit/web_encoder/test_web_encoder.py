@@ -4,6 +4,7 @@ from src.web_encoder import WebEncoder
 from src.web_encoder.exceptions import (
     CannotBeCompressed,
     CannotBeDecompressed,
+    DataDecodeError,
     InvalidBytesType,
     InvalidDataType,
     InvalidEncodedDataType,
@@ -16,6 +17,9 @@ class TestStringSigner(unittest.TestCase):
         self.message = "Test message."
         self.expected_encoded_message = "VGVzdCBtZXNzYWdlLg"
         self.compressive_message = "aaaaaaaaaaaaaaaaaaaaaaaaa"
+        self.expected_encoded_message_compressive_message = (
+            "YWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYQ"
+        )
         self.expected_compressed_message = b"x\x9cKL\xc4\x01\x00{>\tz"
         self.expected_compressed_encoded_message = ".eJxLTMQBAHs-CXo"
 
@@ -23,6 +27,13 @@ class TestStringSigner(unittest.TestCase):
         web_encoder = WebEncoder()
         encoded_message = web_encoder.encode(self.message)
         self.assertEqual(encoded_message, self.expected_encoded_message)
+
+    def test_encode_message_with_out_compression(self):
+        web_encoder = WebEncoder()
+        encoded_message = web_encoder.encode(self.compressive_message, compress=False)
+        self.assertEqual(
+            encoded_message, self.expected_encoded_message_compressive_message
+        )
 
     def test_decode_message(self):
         web_encoder = WebEncoder()
@@ -116,6 +127,10 @@ class TestStringSigner(unittest.TestCase):
 
     def test_bytes_to_string_method_errors(self):
         web_encoder = WebEncoder()
+
+        with self.assertRaises(DataDecodeError):
+            _string = "não".encode("utf-16")
+            web_encoder._bytes_to_string(_string)
 
         with self.assertRaises(InvalidBytesType):
             web_encoder._bytes_to_string("OK")
