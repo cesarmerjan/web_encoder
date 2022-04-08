@@ -8,6 +8,10 @@ It is also lightweight and thread-safe, which makes it ideal for use in services
 By default WebEncoder will try to compress the data.
 If it manages to compress the data, the encoded data started with '.'.
 
+## Installation
+```console
+pip install Web-Encoder
+```
 
 ## Typical usage example:
 
