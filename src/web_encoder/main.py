@@ -92,6 +92,12 @@ class WebEncoder:
         self.encoding = encoding
         self.encoding_errors = encoding_errors
 
+    def __str__(self) -> str:
+        return f"web_encoder"
+
+    def __repr__(self) -> str:
+        return f"WebEncoder(encoding={self.encoding}, encoding_errors={self.encoding_errors})"
+
     def _string_to_bytes(self, _string: str) -> bytes:
         if not isinstance(_string, str):
             raise InvalidStringType
