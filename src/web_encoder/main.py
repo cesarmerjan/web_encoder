@@ -39,6 +39,7 @@ import sys
 import zlib
 
 from .exceptions import (
+    InvalidEncodingErrors,
     CannotBeCompressed,
     CannotBeDecompressed,
     DataDecodeError,
@@ -74,6 +75,7 @@ class WebEncoder:
 
 
     Raises:
+        InvalidEncodingErrors:  Invelid input type. It should be 'strict', 'ignore', 'replace' or 'xmlcharrefreplace'.
         InvalidStringType: Invelid input type. It should be a str type.
         InvalidBytesType:  Invelid input type. It should be a bytes type.
         DataDecodeError: Error when trying to convert string to bytes.
@@ -85,12 +87,26 @@ class WebEncoder:
         web_encoder: WebEncoder instance.
     """
 
-    __slots__ = ("_compression_signal", "encoding", "encoding_errors")
+    ACCEPTED_ENCODING_ERRORS = ("strict", "ignore", "replace", "xmlcharrefreplace",
+                                "backslashreplace", "namereplace", "surrogateescape")
+
+    __slots__ = ("_compression_signal", "encoding", "_encoding_errors")
 
     def __init__(self, encoding="utf-8", encoding_errors="strict") -> "WebEncoder":
         self._compression_signal = b"."
         self.encoding = encoding
+        self._encoding_errors = None
         self.encoding_errors = encoding_errors
+
+    @property
+    def encoding_errors(self) -> str:
+        return self._encoding_errors
+
+    @encoding_errors.setter
+    def encoding_errors(self, encoding_errors: str) -> None:
+        if encoding_errors not in self.ACCEPTED_ENCODING_ERRORS:
+            raise InvalidEncodingErrors
+        self._encoding_errors = encoding_errors
 
     def __str__(self) -> str:
         return f"web_encoder"

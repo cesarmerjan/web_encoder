@@ -2,6 +2,18 @@ class WebEncoderException(Exception):
     pass
 
 
+class InvalidEncodingErrors(WebEncoderException):
+    """Exception raised for errors in the input value of encoding_errors attribute of WebEncoder class.
+
+    Args:
+        message: explanation of the error
+    """
+
+    def __init__(self, message=None):
+        self.message = message or "Invalid encoding_errors value. It should be 'strict', 'ignore', 'replace' or 'xmlcharrefreplace'."
+        super().__init__(self.message)
+
+
 class InvalidStringType(WebEncoderException):
     """Exception raised for errors in the input value of _string into _string_to_bytes method of WebEncoder class.
 

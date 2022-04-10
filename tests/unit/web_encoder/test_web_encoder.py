@@ -2,6 +2,7 @@ import unittest
 
 from src.web_encoder import WebEncoder
 from src.web_encoder.exceptions import (
+    InvalidEncodingErrors,
     CannotBeCompressed,
     CannotBeDecompressed,
     DataDecodeError,
@@ -278,3 +279,24 @@ class TestStringSigner(unittest.TestCase):
             web_encoder._decompress_data(type("MyClass", (object,), {}))
         with self.assertRaises(InvalidBytesType):
             web_encoder._decompress_data(True)
+
+    def test_encoding_errors_input_errors(self):
+
+        with self.assertRaises(InvalidEncodingErrors):
+            WebEncoder(encoding_errors="OK")
+        with self.assertRaises(InvalidEncodingErrors):
+            WebEncoder(encoding_errors=1)
+        with self.assertRaises(InvalidEncodingErrors):
+            WebEncoder(encoding_errors=[])
+        with self.assertRaises(InvalidEncodingErrors):
+            WebEncoder(encoding_errors={})
+        with self.assertRaises(InvalidEncodingErrors):
+            WebEncoder(encoding_errors=set([]))
+        with self.assertRaises(InvalidEncodingErrors):
+            WebEncoder(encoding_errors=1.2)
+        with self.assertRaises(InvalidEncodingErrors):
+            WebEncoder(encoding_errors=lambda: "function")
+        with self.assertRaises(InvalidEncodingErrors):
+            WebEncoder(encoding_errors=type("MyClass", (object,), {}))
+        with self.assertRaises(InvalidEncodingErrors):
+            WebEncoder(encoding_errors=True)
