@@ -1,4 +1,8 @@
-class InvalidStringType(ValueError):
+class WebEncoderException(Exception):
+    pass
+
+
+class InvalidStringType(WebEncoderException):
     """Exception raised for errors in the input value of _string into _string_to_bytes method of WebEncoder class.
 
     Args:
@@ -10,7 +14,7 @@ class InvalidStringType(ValueError):
         super().__init__(self.message)
 
 
-class InvalidBytesType(ValueError):
+class InvalidBytesType(WebEncoderException):
     """Exception raised for errors in the input value of _bytes into methods of WebEncoder class.
 
     Args:
@@ -22,7 +26,7 @@ class InvalidBytesType(ValueError):
         super().__init__(self.message)
 
 
-class InvalidDataType(ValueError):
+class InvalidDataType(WebEncoderException):
     """Exception raised for errors in the input value of data into encode method of WebEncoder class.
 
     Args:
@@ -34,7 +38,7 @@ class InvalidDataType(ValueError):
         super().__init__(self.message)
 
 
-class InvalidEncodedDataType(ValueError):
+class InvalidEncodedDataType(WebEncoderException):
     """Exception raised for errors in the input value of encoded_data into decode method of WebEncoder class.
 
     Args:
@@ -46,7 +50,7 @@ class InvalidEncodedDataType(ValueError):
         super().__init__(self.message)
 
 
-class DataDecodeError(Exception):
+class DataDecodeError(WebEncoderException):
     """Exception raised for data decoding error in _bytes_to_string of WebEncoder class.
 
     Args:
@@ -58,7 +62,7 @@ class DataDecodeError(Exception):
         super().__init__(self.message)
 
 
-class CannotBeCompressed(Exception):
+class CannotBeCompressed(WebEncoderException):
     """Exception raised for errors in the _compress_data method of WebEncoder class.
 
     Args:
@@ -70,7 +74,7 @@ class CannotBeCompressed(Exception):
         super().__init__(self.message)
 
 
-class CannotBeDecompressed(Exception):
+class CannotBeDecompressed(WebEncoderException):
     """Exception raised for errors in the _decompress_data method of WebEncoder class.
 
     Args:
