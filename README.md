@@ -36,6 +36,19 @@ encoded_session = redis.get(session_id)
 session = json.loads(web_encoder.decode(encoded_session))
 
 ```
+
+### At the terminal
+
+#### Encode
+```bash
+python -m web_encoder e 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+```
+
+#### Decode
+```bash
+python -m web_encoder d 'TG9yZW0gaXBzdW0gZG9sb3Igc2l0IGFtZXQsIGNvbnNlY3RldHVyIGFkaXBpc2NpbmcgZWxpdC4'
+```
+
 ## Test Coverage
 ```
 Name                                         Stmts   Miss  Cover

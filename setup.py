@@ -8,7 +8,7 @@ README = (BASEDIR / "README.md").read_text()
 setup(
     name="Web Encoder",
     python_requires=">3.6",
-    version="0.1.1",
+    version="0.1.2",
     description="Used to encode or decode data in a web-friendly format.",
     long_description=README,
     long_description_content_type="text/markdown",

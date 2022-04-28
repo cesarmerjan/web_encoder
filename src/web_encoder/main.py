@@ -38,16 +38,10 @@ import base64
 import sys
 import zlib
 
-from .exceptions import (
-    InvalidEncodingErrors,
-    CannotBeCompressed,
-    CannotBeDecompressed,
-    DataDecodeError,
-    InvalidBytesType,
-    InvalidDataType,
-    InvalidEncodedDataType,
-    InvalidStringType,
-)
+from .exceptions import (CannotBeCompressed, CannotBeDecompressed,
+                         DataDecodeError, InvalidBytesType, InvalidDataType,
+                         InvalidEncodedDataType, InvalidEncodingErrors,
+                         InvalidStringType)
 
 
 class WebEncoder:
@@ -69,9 +63,10 @@ class WebEncoder:
         3.2 The encoded data is turn to str
 
 
-    Args:
+    Attributes:
         encoding (str) = The encoding that will be used to encode string to bytes. Defaults is 'utf-8'.
         encoding_errors (str) = The encoding error type. Defaults is 'strict'.
+        ACCEPTED_ENCODING_ERRORS: (tuple):
 
 
     Raises:
@@ -87,8 +82,15 @@ class WebEncoder:
         web_encoder: WebEncoder instance.
     """
 
-    ACCEPTED_ENCODING_ERRORS = ("strict", "ignore", "replace", "xmlcharrefreplace",
-                                "backslashreplace", "namereplace", "surrogateescape")
+    ACCEPTED_ENCODING_ERRORS = (
+        "strict",
+        "ignore",
+        "replace",
+        "xmlcharrefreplace",
+        "backslashreplace",
+        "namereplace",
+        "surrogateescape",
+    )
 
     __slots__ = ("_compression_signal", "encoding", "_encoding_errors")
 
@@ -109,7 +111,7 @@ class WebEncoder:
         self._encoding_errors = encoding_errors
 
     def __str__(self) -> str:
-        return f"web_encoder"
+        return "web_encoder"
 
     def __repr__(self) -> str:
         return f"WebEncoder(encoding={self.encoding}, encoding_errors={self.encoding_errors})"

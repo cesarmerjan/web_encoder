@@ -10,7 +10,10 @@ class InvalidEncodingErrors(WebEncoderException):
     """
 
     def __init__(self, message=None):
-        self.message = message or "Invalid encoding_errors value. It should be 'strict', 'ignore', 'replace' or 'xmlcharrefreplace'."
+        self.message = (
+            message
+            or "Invalid encoding_errors value. It should be 'strict', 'ignore', 'replace' or 'xmlcharrefreplace'."
+        )
         super().__init__(self.message)
 
 

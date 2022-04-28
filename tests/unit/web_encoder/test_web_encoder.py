@@ -24,6 +24,11 @@ class TestStringSigner(unittest.TestCase):
         self.expected_compressed_message = b"x\x9cKL\xc4\x01\x00{>\tz"
         self.expected_compressed_encoded_message = ".eJxLTMQBAHs-CXo"
 
+    def test_web_encoder_representation(self):
+        web_encoder = WebEncoder()
+        self.assertIsInstance(web_encoder.__str__(), str)
+        self.assertIsInstance(web_encoder.__repr__(), str)
+
     def test_encode_message(self):
         web_encoder = WebEncoder()
         encoded_message = web_encoder.encode(self.message)
