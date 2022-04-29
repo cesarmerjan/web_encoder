@@ -88,7 +88,7 @@ def main(argv: List[str] = None) -> str:
     return result
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover
     if len(sys.argv) <= 1:
         sys.argv.append("--help")
 

@@ -57,12 +57,17 @@ Name                                         Stmts   Miss  Cover
 ----------------------------------------------------------------
 src/__init__.py                                  0      0   100%
 src/web_encoder/__init__.py                      4      0   100%
+src/web_encoder/__main__.py                     27      0   100%
 src/web_encoder/exceptions.py                   34      0   100%
 src/web_encoder/main.py                         82      0   100%
 tests/__init__.py                                0      0   100%
+tests/e2e/__init__.py                            0      0   100%
+tests/e2e/test_cli.py                           26      0   100%
+tests/integration/__init__.py                    0      0   100%
+tests/integration/test_cli.py                   58      0   100%
 tests/unit/__init__.py                           0      0   100%
 tests/unit/web_encoder/__init__.py               0      0   100%
 tests/unit/web_encoder/test_web_encoder.py     244      0   100%
 ----------------------------------------------------------------
-TOTAL                                          364      0   100%
+TOTAL                                          475      0   100%
 ```
