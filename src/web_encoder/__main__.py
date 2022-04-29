@@ -1,6 +1,6 @@
 import argparse
 import sys
-
+from typing import List
 from .main import WebEncoder
 
 PROGRAM = "WebEncoder"
@@ -28,7 +28,7 @@ Arguments:
 EPILOG = "Copyrights @CesarMerjan"
 
 
-def get_parser(
+def create_parser(
     prog: str, usage: str, descrption: str, epilog: str
 ) -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -68,7 +68,7 @@ def add_arguments(parser: argparse.ArgumentParser) -> None:
     )
 
 
-def main(args: argparse.Namespace) -> None:
+def process_data(args: argparse.Namespace) -> str:
 
     web_encoder = WebEncoder()
 
@@ -77,14 +77,21 @@ def main(args: argparse.Namespace) -> None:
     else:
         result = web_encoder.decode(args.data)
 
-    print(result)
+    return result
+
+
+def main(argv: List[str] = None) -> str:
+    parser = create_parser(PROGRAM, USAGE, DESCRIPTION, EPILOG)
+    add_arguments(parser)
+    args = parser.parse_args(argv)
+    result = process_data(args)
+    return result
 
 
 if __name__ == "__main__":
     if len(sys.argv) <= 1:
         sys.argv.append("--help")
 
-    parser = get_parser(PROGRAM, USAGE, DESCRIPTION, EPILOG)
-    add_arguments(parser)
-    args = parser.parse_args()
-    main(args)
+    print(main())
+
+    sys.exit()
