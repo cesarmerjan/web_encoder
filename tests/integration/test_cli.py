@@ -1,11 +1,8 @@
-import unittest
 import argparse
-from src.web_encoder.__main__ import (
-    main,
-    create_parser,
-    add_arguments,
-    process_data,
-)
+import unittest
+
+from src.web_encoder.__main__ import (add_arguments, create_parser, main,
+                                      process_data)
 
 
 class TestStringSigner(unittest.TestCase):
@@ -24,30 +21,15 @@ class TestStringSigner(unittest.TestCase):
         self.valid_options = ("e", "d")
 
     def test_create_parser(self):
-        parser = create_parser(
-            self.program,
-            self.usage,
-            self.description,
-            self.epilog
-        )
+        parser = create_parser(self.program, self.usage, self.description, self.epilog)
         self.assertIsInstance(parser, argparse.ArgumentParser)
 
     def test_add_args_to_parcer(self):
-        parser = create_parser(
-            self.program,
-            self.usage,
-            self.description,
-            self.epilog
-        )
+        parser = create_parser(self.program, self.usage, self.description, self.epilog)
         add_arguments(parser)
 
     def test_parse_arguments(self):
-        parser = create_parser(
-            self.program,
-            self.usage,
-            self.description,
-            self.epilog
-        )
+        parser = create_parser(self.program, self.usage, self.description, self.epilog)
         add_arguments(parser)
 
         args = parser.parse_args([self.valid_options[0], self.message])
@@ -63,12 +45,7 @@ class TestStringSigner(unittest.TestCase):
         self.assertTrue(args.compress)
 
     def test_process_data(self):
-        parser = create_parser(
-            self.program,
-            self.usage,
-            self.description,
-            self.epilog
-        )
+        parser = create_parser(self.program, self.usage, self.description, self.epilog)
         add_arguments(parser)
 
         args = parser.parse_args([self.valid_options[0], self.message])
@@ -83,7 +60,9 @@ class TestStringSigner(unittest.TestCase):
         result = process_data(args)
         self.assertEqual(result, self.expected_compressed_encoded_message)
 
-        args = parser.parse_args([self.valid_options[1], self.expected_compressed_encoded_message])
+        args = parser.parse_args(
+            [self.valid_options[1], self.expected_compressed_encoded_message]
+        )
         result = process_data(args)
         self.assertEqual(result, self.compressive_message)
 

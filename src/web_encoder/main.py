@@ -38,10 +38,16 @@ import base64
 import sys
 import zlib
 
-from .exceptions import (CannotBeCompressed, CannotBeDecompressed,
-                         DataDecodeError, InvalidBytesType, InvalidDataType,
-                         InvalidEncodedDataType, InvalidEncodingErrors,
-                         InvalidStringType)
+from .exceptions import (
+    CannotBeCompressed,
+    CannotBeDecompressed,
+    DataDecodeError,
+    InvalidBytesType,
+    InvalidDataType,
+    InvalidEncodedDataType,
+    InvalidEncodingErrors,
+    InvalidStringType,
+)
 
 
 class WebEncoder:

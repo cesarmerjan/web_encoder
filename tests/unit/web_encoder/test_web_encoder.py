@@ -1,16 +1,12 @@
 import unittest
 
 from src.web_encoder import WebEncoder
-from src.web_encoder.exceptions import (
-    InvalidEncodingErrors,
-    CannotBeCompressed,
-    CannotBeDecompressed,
-    DataDecodeError,
-    InvalidBytesType,
-    InvalidDataType,
-    InvalidEncodedDataType,
-    InvalidStringType,
-)
+from src.web_encoder.exceptions import (CannotBeCompressed,
+                                        CannotBeDecompressed, DataDecodeError,
+                                        InvalidBytesType, InvalidDataType,
+                                        InvalidEncodedDataType,
+                                        InvalidEncodingErrors,
+                                        InvalidStringType)
 
 
 class TestStringSigner(unittest.TestCase):
